@@ -21,6 +21,8 @@ time:
     id: homeassistant_time  
 
 # https://blog.matterxiaomi.com/blog/bathroom-mirror-part5/
+# https://esphome.io/components/display/tm1637
+# ESP32 32PIN expansion board -> D17 D16  3V gnd
 display:
   platform: tm1637
   clk_pin: GPIO17
@@ -33,3 +35,15 @@ display:
         it.strftime("%H.%M", id(homeassistant_time).now());
       else
         it.strftime("%H%M", id(homeassistant_time).now());
+
+# https://esphome.io/components/sensor/dht.html#dht-temperature-humidity-sensor
+# https://www.matterxiaomi.com/boards/topic/74/diy-esp8266-hc-sr501-motion-sensor-tutorial#44549
+# ESP32 32PIN expansion board -> D15   3V gnd
+sensor:
+  - platform: dht
+    pin: GPIO15
+    temperature:
+      name: "Dht 11 Temperature"
+    humidity:
+      name: "Dht 11 Humidity"
+    update_interval: 60s        

@@ -56,6 +56,8 @@ esp32_touch:
 
 
 # ttp223 https://community.home-assistant.io/t/touch-sensor-ttp223/351328/3
+# https://blog.matterxiaomi.com/blog/bathroom-mirror-part4/
+# ESP32 32PIN expansion board -> vcc   3v gnd  io     gpio14(D14)  capacitive touch inputs on the ESP32
 binary_sensor:
   - platform: gpio
     pin: GPIO14

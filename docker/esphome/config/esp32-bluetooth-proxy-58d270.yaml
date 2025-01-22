@@ -67,6 +67,20 @@ binary_sensor:
   - platform: gpio
     name: "SR501 PIR Sensor"
     pin: GPIO14
-    device_class: motion     
+    device_class: motion   
+
+#
+# https://www.matterxiaomi.com/boards/topic/29105/esphome/page/2#46626
+# 
+output:
+  - platform: ledc
+    pin: GPIO2    # 这里是esp32控制的板在灯的GPIO
+    id: gpio_2
+
+# Example usage in a light
+light:
+  - platform: monochromatic
+    output: gpio_2
+    name: "Indicator Light"      
 
  

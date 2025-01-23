@@ -94,6 +94,8 @@ sensor:
     name: Uptime Sensor   
 
 # 
+#  http://localhost:4999/boards/topic/33168/esphome-esp32-38pin#47759
+#  G14 - ESP32S P14  -38pin扩展版  3.3v gnd
 binary_sensor:
   # SR602 PIR Sensor
   - platform: gpio

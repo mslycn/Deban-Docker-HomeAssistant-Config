@@ -3,6 +3,7 @@ esphome:
   friendly_name: esp32no2
 
 # http://localhost:4999/boards/postcreate/36181/54809
+# project source code:http://localhost:4999/boards/topic/36181/esp32-vl53l0x-esphome#54809
 # step 1.identify the correct ESP platform and board
 esp32:
   board: esp32dev

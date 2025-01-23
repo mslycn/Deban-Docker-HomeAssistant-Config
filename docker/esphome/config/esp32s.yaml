@@ -1,32 +1,145 @@
+# https://github.com/DIYSmartHome8/Asrpro-ESP8266/blob/main/esp8266/asrpro_public.yaml
+substitutions:
+  devicename: esp32s 
+  friendly_name: $devicename
+  hw_version: v1.0
+
 esphome:
   name: esp32s
-  friendly_name: esp32s
 
+
+  friendly_name: $devicename
+  comment: $devicename
+  area: Living Room  
+ 
 esp32:
-  board: esp32dev
-  framework:
-    type: arduino
+  board: nodemcu-32s
 
 # Enable logging
+# Enable logging
 logger:
+  level: DEBUG
+  baud_rate: 0
+
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: "6epmaJXUBK+TmrT7e99ZocTBeP/VTEYSpCV8sJOSj6w="
+  
 
 ota:
   - platform: esphome
-    password: "9753c7c1ded417467c688d495c24cba9"
+    password: "0d2bdf9bf0bc188e8154c8d455dcd474"
 
+# you can upload and update fireware via visit http://test1.local/ in your brower
+web_server:  
+  port: 80    
+
+# ESPHome WiFi Component https://esphome.io/components/wifi.html
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Esp32S Fallback Hotspot"
-    password: "VsksX3xnz3Qa"
+    ssid: "esp32s"
+    password: ""
 
 captive_portal:
-    
+
+# Example configuration entry for ESP32
+# https://esphome.io/components/i2c#i2c
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  id: bus_a  
+
+
+
+# Example configuration entry
+mdns:
+  disabled: false
+
+  services:
+    - service: "_custom_service"
+      protocol: "_tcp"
+      port: 8080
+      txt:
+        txt_key_1: txt_value_1    
+
+
+
+sensor:
+# https://esphome.io/components/sensor/vl53l0x.html
+  - platform: vl53l0x
+    name: "VL53L0x Distance"
+  
+    update_interval: 60s
+    long_range: true    
+  - platform: wifi_signal
+    name: ESP RSSI
+    update_interval: 60s
+  - platform: template
+    name: ESP Free Memory Byte
+    id: id_esp_free_memory_byte
+    lambda: |-
+      return ESP.getFreeHeap();
+    filters:
+      - multiply: 0.001
+    unit_of_measurement: "KB"
+    update_interval: 30s
+  # https://esphome.io/components/sensor/uptime  
+  - platform: uptime
+    type: seconds
+    name: Uptime Sensor   
+
+# 
+binary_sensor:
+  # SR602 PIR Sensor
+  - platform: gpio
+    name: "SR602 PIR Sensor"
+    pin: GPIO14
+    device_class: motion      
+
+
+
+# come from：https://github.com/DIYSmartHome8/Asrpro-ESP8266/blob/main/esp8266/asrpro_public.yaml
+button:
+  - platform: restart   
+    name: ESP Restart
+    entity_category: config
+  - platform: factory_reset
+    disabled_by_default: True
+    name: ESP Factory Reset
+    id: factory_reset_all   
+
+
+  
+
+# 增加一个text_sensor 负责处理uart收到的消息
+text_sensor:
+# https://community.home-assistant.io/t/esp-12f-ds18b20-not-working-on-gpio13/636264/3?u=msly
+- platform: version
+  name: ESPHome Version
+  disabled_by_default: false
+  icon: mdi:new-box
+  entity_category: diagnostic
+  hide_timestamp: false    
+
+# https://esphome.io/components/text_sensor/wifi_info.html
+- platform: wifi_info
+  ip_address:
+    name: IP
+    disabled_by_default: false
+    entity_category: diagnostic
+    update_interval: 1s
+  ssid:
+    name: ESP Connected SSID
+  bssid:
+    name: ESP Connected BSSID
+  mac_address:
+    name: ESP Mac Wifi Address
+  scan_results:
+    name: ESP Latest Scan Results
+  dns_address:
+    name: ESP DNS Address

@@ -1,3 +1,5 @@
+# This is a source code created by esp32-s3-box-3b offcial project
+# 
 substitutions:
   name: esp32-s3-box-3-2d954c
   friendly_name: ESP32 S3 Box 3 2d954c

@@ -65,13 +65,25 @@ binary_sensor:
     name: "ttp223 Binary Touch Sensor"
 
 
-# https://esphome.io/components/sensor/vl53l0x.html
 sensor:
+# https://esphome.io/components/sensor/dht.html#dht-temperature-humidity-sensor
+# https://www.matterxiaomi.com/boards/topic/74/diy-esp8266-hc-sr501-motion-sensor-tutorial#44549
+# ESP32 32PIN expansion board -> D15   3V gnd
+  - platform: dht
+    pin: GPIO15
+    temperature:
+      name: "Dht 11 Temperature"
+    humidity:
+      name: "Dht 11 Humidity"
+    update_interval: 60s 
+
+# https://esphome.io/components/sensor/vl53l0x.html        
   - platform: vl53l0x
     name: "VL53L0x Distance"
     address: 0x29
     update_interval: 1s
-    long_range: true    
+    long_range: true  
+    
 
 # Indicator Light 
 # 用switch组件、或者 output + light 组件，实际效果一样，只是在前端出现的实体一个是开关一个是灯。
@@ -84,7 +96,7 @@ output:
 # https://chochol.io/en/smart-home/home-assistant-installing-mirror-lighting-on-esphome/
   - platform: gpio
     pin: 
-      number: GPIO15
+      number: GPIO16
       mode:
         output: "True"
         open_drain: "True" 

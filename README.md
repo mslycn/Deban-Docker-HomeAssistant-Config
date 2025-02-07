@@ -1,6 +1,15 @@
 # Home-AssistantConfig
 
-change dns for github.com
+## Enable Raspberry ssh client  root Login
+~~~
+PermitRootLogin yes
+
+/etc/ssh/sshd_config
+~~~
+detail:https://blog.matterxiaomi.com/blog/raspberry-pi-ssh-server-part1/
+
+
+## change dns for github.com
 
 cat /etc/hosts
 ~~~

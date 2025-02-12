@@ -81,7 +81,7 @@ sensor:
   - platform: vl53l0x
     name: "VL53L0x Distance"
     address: 0x29
-    update_interval: 1s
+    update_interval: 5s
     long_range: true  
     
 

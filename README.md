@@ -1,6 +1,7 @@
 # Home-AssistantConfig
 
 local：/data  # on debain 12.9 via vmware on windows10
+
 remote：https://github.com/mslycn/Deban-Docker-HomeAssistant-Config.git
 
 ## Enable Raspberry ssh client  root Login

@@ -45,3 +45,9 @@ PING github.com (140.82.114.4) 56(84) bytes of data.
 ~~~
 
 
+cd /data
+git add .
+git commit -m "all"
+git push -u origin main
+
+

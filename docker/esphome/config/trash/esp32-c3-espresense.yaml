@@ -1,0 +1,32 @@
+esphome:
+  name: esp32-c3-espresense
+  friendly_name: esp32-c3-espresense
+
+esp32:
+  board: airm2m_core_esp32c3
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "friXmpVpcD2U8bZaS/GQ8IoUkY55noTE0EBstRb7uFc="
+
+ota:
+  - platform: esphome
+    password: "5f8e0c1672f6bbede4be1dfb6539d444"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32-C3-Espresense"
+    password: "3ZJBHaQ5eCPU"
+
+captive_portal:
+    

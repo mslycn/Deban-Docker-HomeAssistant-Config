@@ -1,0 +1,29 @@
+esphome:
+  name: esp32-devkitv1-no2
+  friendly_name: esp32-devkitv1-no2
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "Sf0b+TY9ebGXsw9eHv0SUvgkAgpawEpT7XMRTCqYwAw="
+
+ota:
+  - platform: esphome
+    password: "2d029c5e930c1b93db6a633d0441e14a"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  
+
+captive_portal:
+    

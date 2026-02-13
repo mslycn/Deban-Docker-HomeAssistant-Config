@@ -8,8 +8,9 @@ esphome:
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
 api:
-  encryption:
-    key: dZJEAQ1HV9CkvLhDrDUvyCB9Su0H8Sw6V7i0QiaADRk=
+#  encryption:
+#    key: dZJEAQ1HV9CkvLhDrDUvyCB9Su0H8Sw6V7i0QiaADRk=
+  
 
 
 wifi:
@@ -69,6 +70,7 @@ binary_sensor:
     pin: GPIO14
     device_class: motion   
 
+
 #
 # https://www.matterxiaomi.com/boards/topic/29105/esphome/page/2#46626
 # 
@@ -81,6 +83,4 @@ output:
 light:
   - platform: monochromatic
     output: gpio_2
-    name: "Indicator Light"      
-
- 
+    name: "Indicator Light"    
